@@ -1,3 +1,4 @@
+#Converts from decimal to binary system
 def convert_to_binary(x):
     converted = ""
     while x > 0:
@@ -9,6 +10,7 @@ def convert_to_binary(x):
             converted += "1"
     print("Your number converted to binary system: " + converted[::-1])
 
+#Converts from binary to decimal
 def convert_to_decimal(x):
     converted = 0
     square = len(x) - 1
@@ -17,6 +19,7 @@ def convert_to_decimal(x):
         square -= 1
     print("Your number converted to decimal system: " + str(converted))
 
+#Checks if exactly 2 numbers have been entered
 def lenght_checking():
     global separated
     global number
@@ -25,6 +28,7 @@ def lenght_checking():
         number = input("Give me a number and (after space) a number system (2/10): ")
         separated = number.split(" ", 2)
 
+#Checks if binary number has only "1" and "0"
 def binary_checking():
     if separated[0] == "":
         print("\nIn binary system, you can only use 1 and 0.")
@@ -42,18 +46,21 @@ def binary_checking():
 
 try_again = "yes"
 
+#Main loop
 while try_again == "yes":
     number = input("Give me a number and (after space) a number system (2/10): ")
     separated = number.split(" ", 2)
 
     lenght_checking()
 
+    #Checks if input is digits only
     while not (separated[0].isdigit() and separated[1].isdigit()):
         print("You can enter only numbers! \n")
         number = input("Give me a number and (after space) a number system (2/10): ")
         separated = number.split(" ", 2)
         lenght_checking()
 
+    #Makes sure the second number is "2" or "10"
     while not (separated[1] == "10" or separated[1] == "2"):
         print("Error! After space, you can enter only 2 o 10! \n")
         number = input("Give me a number and (after space) a number system (2/10): ")
@@ -67,7 +74,7 @@ while try_again == "yes":
 
 
 
-
+    #If decimal input
     if separated[1] == "10":
         if separated[0] == "0":
             print("Your number converted to binary system: 0")
@@ -75,10 +82,12 @@ while try_again == "yes":
             number_to_convert = int(separated[0])
             convert_to_binary(number_to_convert)
 
+    #If binary input
     if separated[1] == "2":
         binary_checking()
         convert_to_decimal(separated[0])
 
+    #Asks for starting again
     try_again = input("\n Would you like to try again? (yes/no) ")
     while not (try_again == "yes" or try_again == "no"):
         print("\n You can enter only yes or no!")
